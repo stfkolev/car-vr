@@ -1,0 +1,34 @@
+{
+  "name": "car-vr",
+  "version": "1.0.0",
+  "description": "Basic car physics and model visualization",
+  "main": "js/vr.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stfkolev/car-vr.git"
+  },
+  "keywords": [
+    "vr",
+    "webgl",
+    "threejs",
+    "car",
+    "visualization"
+  ],
+  "author": "Stf Kolev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stfkolev/car-vr/issues"
+  },
+  "homepage": "https://github.com/stfkolev/car-vr#readme",
+  "dependencies": {
+    "connect": "^3.7.0",
+    "gsap": "^3.0.1",
+    "hammerjs": "^2.0.8",
+    "nosleep": "^2.0.0",
+    "serve-static": "^1.14.1",
+    "three": "^0.110.0"
+  }
+}

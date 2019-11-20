@@ -1,0 +1,113 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+	<title>Car VR</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no,shrink-to-fit=no">
+	<meta name="description" content="Experience Faraday Future's 3D simulation of their flagship vehicle">
+	<meta name="author" content="Stf Kolev">
+
+	<meta property="og:title" content="Faraday Future" />
+	<meta property="og:site_name" content="Faraday Future" />
+	<meta property="og:image" content="../textures/meta/fb.jpg" />
+	<meta property="og:description" content="Car VR - Experience Faraday Future's 3D simulation of their flagship vehicle" />
+
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@FaradayFuture">
+	<meta name="twitter:title" content="Faraday Future">
+	<meta name="twitter:description" content="Experience Faraday Future's 3D simulation of their flagship vehicle">
+	<meta name="twitter:image" content="http://vr.ff.com/textures/meta/fb.jpg">
+	<meta name="twitter:image:width" content="1200">
+	<meta name="twitter:image:height" content="630">
+
+	<link rel="apple-touch-icon" href="../textures/meta/appleIcon.png" />
+	<link rel="icon" type="image/png" href="../textures/meta/favicon.png" />
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+<main id="pageMain">
+
+<!-- Desktop controls -->
+<div class="ctrls" id="ctrlKeys">
+	<div class="ctrlIcon" id="ctrlIcoKeys"></div>
+	<div class="ctrlDesc">Car Controls</div>
+</div>
+<div class="ctrls" id="ctrlMouse">
+	<div class="ctrlIcon" id="ctrlIcoMouse"></div>
+	<div class="ctrlDesc">Drag camera</div>
+</div>
+<div class="ctrls" id="ctrlScroll">
+	<div class="ctrlIcon" id="ctrlIcoScroll"></div>
+	<div class="ctrlDesc">Scroll zoom</div>
+</div>
+
+<!-- Mobile HUD -->
+<div class="mobileHUD" id="mobileHUDTilt">
+	<div class="mobileIcon" id="hudIcoTilt"></div>
+	<div class="ctrlDesc">Camera</div>
+</div>
+<div class="mobileHUD" id="mobileHUDTouch">
+	<div class="mobileIcon" id="hudIcoTouch"></div>
+	<div class="ctrlDesc">Car controls</div>
+</div>
+
+<!-- Round Buttons -->
+<div id="btnCase">
+	<div class="btnBox" id="btnVR">
+		<div class="btnIcon"></div>
+		<div class="ctrlDesc">VR Mode</div>
+	</div>
+	<div class="btnBox" id="btnVRO">
+		<div class="btnIcon"></div>
+		<div class="ctrlDesc">VR Orbit</div>
+	</div>
+	<div class="btnBox" id="btnVREsc">
+		<div class="btnIcon"></div>
+		<div class="ctrlDesc">Exit VR</div>
+	</div>
+	<div class="btnBox" id="btnEnterFull">
+		<div class="btnIcon"></div>
+		<div class="ctrlDesc">Fullscreen</div>
+	</div>
+	<div class="btnBox" id="btnExitFull">
+		<div class="btnIcon"></div>
+		<div class="ctrlDesc">Exit</div>
+	</div>
+</div>
+
+<!-- Joystick control -->
+<svg class="joyStick" id="joyOut">
+	<circle cx="60" cy="60" r="42"/>
+	<polyline points="49 11 60 2 71 11" class="st1"/>
+	<polyline points="11 49 2 60 11 71" class="st1"/>
+	<polyline points="71 107 60 118 49 107" class="st1"/>
+	<polyline points="107 71 118 60 107 49" class="st1"/>
+</svg>
+<svg class="joyStick" id="joyIn">
+	<circle cx="34" cy="34" r="30"/>
+</svg>
+
+<!-- Preloader widget -->
+<div id="preloader">
+	<div id="preHeader">Automotive VR Test Ride</div>
+	<div id="preBar">
+		<div id="preProg"></div>
+	</div>
+	<div id="preDetail"></div>
+	<div id="preLogo"></div>
+</div>
+
+</main>
+
+<!-- Magical goodness --> 
+<script src="js/locale.js"></script>
+<script src="libs/three.js"></script>
+<script src="libs/hammer.js"></script>
+<script src="libs/nosleep.js"></script>
+<script src="libs/TweenLite.js"></script>
+<script src="js/vr.js"></script>
+
+</body>
+</html>
