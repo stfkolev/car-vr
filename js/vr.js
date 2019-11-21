@@ -223,7 +223,7 @@
         // Automotive Constants
         var Automotive = /** @class */ (function () {
             function Automotive() {}
-            Automotive.Nm = 1800; // Newton
+            Automotive.Force = 1800; // Newton
             Automotive.Accel = 10; // m/s^2
             Automotive.Decel = -5; // m/s^2
             Automotive.MaxVel = (70 * 1610) / 3600; // 70m/h ~= 31.3m/s ~= 112.68km/h -- m/s * 3.6 ~= km/h
@@ -285,13 +285,12 @@
                             this.braking = 1;
                             break;
                         case 37: // Left
+                            this.accel += (-0.6);
                             this.wAngleTarg += Automotive.MaxTurn;
                             break;
                         case 39: // Right
+                            this.accel += (-0.6);
                             this.wAngleTarg -= Automotive.MaxTurn;
-                            break;
-                        case 80:
-                            isCarDecel = true;
                             break;
                     }
                 }
@@ -337,7 +336,7 @@
                     const omegaAxle = 0.6;
                     const omegaMg = 0.4;
 
-                    const decceleration = ((((Automotive.Weight / Automotive.Nm) * Automotive.Accel) * omegaAxle * omegaMg) - 4) * Automotive.Decel;
+                    const decceleration = ((((Automotive.Weight / Automotive.Force) * Automotive.Accel) * omegaAxle * omegaMg) - 4) * Automotive.Decel;
                     this.accel += (decceleration);
                     
                 }
