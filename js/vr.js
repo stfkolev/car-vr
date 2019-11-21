@@ -223,9 +223,10 @@
         // Automotive Constants
         var Automotive = /** @class */ (function () {
             function Automotive() {}
-            Automotive.Accel = 5; // m/s^2
-            Automotive.Decel = -10; // m/s^2
-            Automotive.MaxVel = (70 * 1610) / 3600; // 70m/h ~= 31.3m/s
+            Automotive.Nm = 1800; // Newton
+            Automotive.Accel = 10; // m/s^2
+            Automotive.Decel = -5; // m/s^2
+            Automotive.MaxVel = (70 * 1610) / 3600; // 70m/h ~= 31.3m/s ~= 112.68km/h -- m/s * 3.6 ~= km/h
             Automotive.MaxTurn = Math.PI * 0.33; // Max angle of wheel turn
             // Dimensions
             Automotive.Length = 5.250; // Car length
@@ -234,6 +235,7 @@
             Automotive.WheelBase = 3.200; // Wheel base
             Automotive.WheelDiam = 0.780; // Wheel diameter
             Automotive.WheelCirc = Automotive.WheelDiam * Math.PI; // Wheel circumference
+            Automotive.Weight = 3198.00; // kg
             return Automotive;
         }());
         exports.Automotive = Automotive;
@@ -332,12 +334,19 @@
                 } else if (this.joyVec.x != 0 || this.joyVec.y != 0) {
                     this.readJoyStickInput();
                 } else if(this.keys.length == 0) {
-                    this.accel += (Automotive.Decel + (Math.PI * 0.5));
-                    console.log(this.accel);
+                    const omegaAxle = 0.6;
+                    const omegaMg = 0.4;
+
+                    const decceleration = ((((Automotive.Weight / Automotive.Nm) * Automotive.Accel) * omegaAxle * omegaMg) - 4) * Automotive.Decel;
+                    this.accel += (decceleration);
+                    
                 }
                 ///////////////// PHYSICS, YO! /////////////////
                 this.accel *= this.time.delta;
                 this.speed += this.accel;
+
+                let speedometer = document.getElementsByClassName('speedometerSpeed');
+                speedometer[0].innerHTML = Math.round(parseInt(this.speed * 3.6));
 
                 if (this.speed < 0) {
                     this.speed = 0;

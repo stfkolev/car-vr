@@ -42,6 +42,9 @@ html, body{
 #ctrlScroll{
 	left: 190px;
 }
+#speedometer{
+	left: 280px;
+}
 .ctrlIcon{
 	width: 35px;
 	height: 35px;
@@ -55,6 +58,17 @@ html, body{
 }
 #ctrlIcoScroll{
 	background-position: 100% 50%;
+}
+.speedometerSpeed {
+	font-family: Roboto, sans-serif;
+	font-weight: bold;
+	font-size: 24pt;
+
+	text-align: center;
+	width: 35px;
+	height: 35px;
+
+	display: inline-block;
 }
 .ctrlDesc{
 	font-size: 6px;
