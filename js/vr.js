@@ -284,14 +284,58 @@
                             
                             this.braking = 1;
                             break;
-                        case 37: // Left
-                            this.accel += (-0.6);
+                        case 37: {// Left
+                            const omegaAxle = 0.6;
+                            const omegaMg = 0.4;
+
+                            /*!  
+                             *  Variables:
+                             *      F - Friction
+                             *      m - Weight
+                             *      g - acceleration
+                             *      R - Axle Force
+                             *      F^fr^max - ~decceleration
+                             * 
+                             *  Constants:
+                             *      u^s = 0.6
+                             *      u^k = 0.4
+                             * 
+                             *  Formula:
+                             *      F = (((m / R) * g) * u^s * u^k) - 4) * F^fr^max
+                             *      
+                             */
+                            const decceleration = ((((Automotive.Weight / Automotive.Force) * Automotive.Accel) * omegaAxle * omegaMg) - 4) * Automotive.Decel;
+                            
+                            this.accel += (decceleration - Automotive.MaxTurn);
                             this.wAngleTarg += Automotive.MaxTurn;
                             break;
-                        case 39: // Right
-                            this.accel += (-0.6);
+                        }
+                        case 39: {// Right
+                        const omegaAxle = 0.6;
+                            const omegaMg = 0.4;
+
+                            /*!  
+                             *  Variables:
+                             *      F - Friction
+                             *      m - Weight
+                             *      g - acceleration
+                             *      R - Axle Force
+                             *      F^fr^max - ~decceleration
+                             * 
+                             *  Constants:
+                             *      u^s = 0.6
+                             *      u^k = 0.4
+                             * 
+                             *  Formula:
+                             *      F = (((m / R) * g) * u^s * u^k) - 4) * F^fr^max
+                             *      
+                             */
+                            const decceleration = ((((Automotive.Weight / Automotive.Force) * Automotive.Accel) * omegaAxle * omegaMg) - 4) * Automotive.Decel;
+                            
+                            this.accel += (decceleration - Automotive.MaxTurn);
                             this.wAngleTarg -= Automotive.MaxTurn;
                             break;
+                        }
                     }
                 }
             };
@@ -336,6 +380,22 @@
                     const omegaAxle = 0.6;
                     const omegaMg = 0.4;
 
+                    /*!  
+                     *  Variables:
+                     *      F - Friction
+                     *      m - Weight
+                     *      g - acceleration
+                     *      R - Axle Force
+                     *      F^fr^max - ~decceleration
+                     * 
+                     *  Constants:
+                     *      u^s = 0.6
+                     *      u^k = 0.4
+                     * 
+                     *  Formula:
+                     *      F = (((m / R) * g) * u^s * u^k) - 4) * F^fr^max
+                     *      
+                     */
                     const decceleration = ((((Automotive.Weight / Automotive.Force) * Automotive.Accel) * omegaAxle * omegaMg) - 4) * Automotive.Decel;
                     this.accel += (decceleration);
                     
