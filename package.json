@@ -2,7 +2,7 @@
   "name": "car-vr",
   "version": "1.0.0",
   "description": "Basic car physics and model visualization",
-  "main": "js/vr.js",
+  "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -27,8 +27,15 @@
     "connect": "^3.7.0",
     "gsap": "^3.0.1",
     "hammerjs": "^2.0.8",
+    "lodash": "^4.17.15",
     "nosleep": "^2.0.0",
     "serve-static": "^1.14.1",
-    "three": "^0.110.0"
+    "three": "^0.110.0",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.7.3"
+  },
+  "devDependencies": {
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
   }
 }

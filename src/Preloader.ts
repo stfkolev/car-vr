@@ -21,35 +21,35 @@ var Preloader = function () {
     var _loop_1 = function (i) {
       ext = '.' + this_1.manifesto[i].ext;
       switch (this_1.manifesto[i].type) {
-      case 'texture':
-        this_1.loaderText.load(this_1.path + 'textures/' + this_1.manifesto[i].name + ext, function (_obj) {
-          this.assetAquired(_obj, this.manifesto[i].name);
-        }.bind(this_1), undefined, function (_err) {
-          this.assetFailed(_err, this.manifesto[i].name);
-        }.bind(this_1));
-        break;
-      case 'mesh':
-        this_1.loaderMesh.load(this_1.path + 'meshes/' + this_1.manifesto[i].name + '.json', function (_obj) {
-          this.assetAquired(_obj, this.manifesto[i].name);
-        }.bind(this_1), undefined, function (_err) {
-          this.assetFailed(_err, this.manifesto[i].name);
-        }.bind(this_1));
-        break;
-      case 'cubetexture':
-        this_1.loaderCube.setPath(this_1.path + 'textures/' + this_1.manifesto[i].name + '/');
-        this_1.loaderCube.load([
-          'xp' + ext,
-          'xn' + ext,
-          'yp' + ext,
-          'yn' + ext,
-          'zp' + ext,
-          'zn' + ext
-        ], function (_obj) {
-          this.assetAquired(_obj, this.manifesto[i].name);
-        }.bind(this_1), undefined, function (_err) {
-          this.assetFailed(_err, this.manifesto[i].name);
-        }.bind(this_1));
-        break;
+        case 'texture':
+          this_1.loaderText.load(this_1.path + 'textures/' + this_1.manifesto[i].name + ext, function (_obj) {
+            this.assetAquired(_obj, this.manifesto[i].name);
+          }.bind(this_1), undefined, function (_err) {
+            this.assetFailed(_err, this.manifesto[i].name);
+          }.bind(this_1));
+          break;
+        case 'mesh':
+          this_1.loaderMesh.load(this_1.path + 'meshes/' + this_1.manifesto[i].name + '.json', function (_obj) {
+            this.assetAquired(_obj, this.manifesto[i].name);
+          }.bind(this_1), undefined, function (_err) {
+            this.assetFailed(_err, this.manifesto[i].name);
+          }.bind(this_1));
+          break;
+        case 'cubetexture':
+          this_1.loaderCube.setPath(this_1.path + 'textures/' + this_1.manifesto[i].name + '/');
+          this_1.loaderCube.load([
+            'xp' + ext,
+            'xn' + ext,
+            'yp' + ext,
+            'yn' + ext,
+            'zp' + ext,
+            'zn' + ext
+          ], function (_obj) {
+            this.assetAquired(_obj, this.manifesto[i].name);
+          }.bind(this_1), undefined, function (_err) {
+            this.assetFailed(_err, this.manifesto[i].name);
+          }.bind(this_1));
+          break;
       }
     };
     var this_1 = this;

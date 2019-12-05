@@ -16,23 +16,6 @@ var locale = {
 		LOADING_ASSETS: 'Loading assets...',
 		BROWSER_BAD: 'Your browser does not provide<br>3D support.',
 		BUTTON_GALLERY: 'Go to Car Gallery',
-	},
-	zh: {
-		CAR_CONTROLS: '方向控制',
-		DRAG_CAMERA: '拖拽镜头',
-		SCROLL_ZOOM: '滑动缩放',
-		TILT: '倾斜',
-		VR_STEERING: 'VR方向控制',
-		VR_CAMERA: 'VR镜头',
-		EXIT_VR: '退出VR',
-		FULLSCREEN: '全屏',
-		EXIT_FULLSCREEN: '退出全屏',
-		INTRO_HEADER: 'Car 虚拟实境车辆试乘',
-		BUILDING_CAR: '造车进行中',
-		TAP_TO_BEGIN: '触屏开始',
-		LOADING_ASSETS: '加载中',
-		BROWSER_BAD: '您的浏览器没有提供3D 技术支持',
-		BUTTON_GALLERY: '前往 Car图库',
 	}
 };
 var translations = locale[lang];

@@ -66,7 +66,7 @@ var Binocs = function () {
     shape.holes.push(hole);
     this.vigGeom = new THREE.ShapeGeometry(shape, 6);
     this.vigMat = new THREE.MeshBasicMaterial({
-      color: 0,
+      color: 0x000000,
       depthTest: false,
       depthWrite: false,
       transparent: true

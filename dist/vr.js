@@ -246,6 +246,7 @@
                 this.velocity = new THREE.Vector2();
                 this.speed = 0;
                 this.accel = 0;
+                this.gear = 1;
                 this.pos = new THREE.Vector2();
                 this.joyVec = new THREE.Vector2();
                 // Momentim
@@ -274,12 +275,47 @@
             CarProps.prototype.readKeyboardInput = function () {
                 for (var i = 0; i < this.keys.length; i++) {
                     switch (this.keys[i]) {
-                        case 38: // Up
-                            this.accel += Automotive.Accel;
-                            // Simulate wind resistance as we reach top speed
-                            this.accel *= utils_1.normalizeQuadIn(this.speed, Automotive.MaxVel, Automotive.MaxVel - 10);
+                        case 17: // CTRL - Shift Down
+                            console.log((2.314815 * 3.6));
+                            if((this.speed * 3.6) < (5.314815) && this.gear != -1) {
+                                this.gear = -1;
+                            } else {
+                                if(this.gear > 0)
+                                    this.gear--;
+                            }
                             break;
+                        case 16: // SHIFT - Shift Up
+                            console.log(this.gear);
+                            
+                                
+                            if(this.gear == -1 && (this.speed * 3.6) < (5.314815))
+                                this.gear++;
+
+                            if(this.gear > 0 && this.gear < 6)
+                                this.gear++;
+                            
+                            break;
+                        case 38: // Up
+                            if(this.gear > -1) {
+                                this.accel += Automotive.Accel;
+                                // Simulate wind resistance as we reach top speed
+                                this.accel *= utils_1.normalizeQuadIn(this.speed, Automotive.MaxVel, Automotive.MaxVel - 10);
+                            } else {
+                                this.accel += Automotive.Decel / 1.2;
+                                this.braking = 1;
+                            }
+                            break;
+
                         case 40: // Down
+                            if(this.gear == -1) {
+                                this.accel += Automotive.Accel;
+                                this.accel *= utils_1.normalizeQuadIn(this.speed, (Automotive.MaxVel / Math.PI), (Automotive.MaxVel / Math.PI) - 10);
+                            } else {
+                                this.accel += Automotive.Decel / 1.2;
+                                this.braking = 1;
+                            }
+                            break;
+                        case 32: // Space
                             this.accel += Automotive.Decel;
                             
                             this.braking = 1;
@@ -294,6 +330,7 @@
                              *      m - Weight
                              *      g - acceleration
                              *      R - Axle Force
+                             *      W - Number of Wheels
                              *      F^fr^max - ~decceleration
                              * 
                              *  Constants:
@@ -311,7 +348,7 @@
                             break;
                         }
                         case 39: {// Right
-                        const omegaAxle = 0.6;
+                            const omegaAxle = 0.6;
                             const omegaMg = 0.4;
 
                             /*!  
@@ -413,17 +450,26 @@
                 }
                 
                 this.frameDist = this.speed * this.time.delta;
+
                 // Limit turn angle as speed increases
                 this.wAngleTarg *= utils_1.normalizeQuadIn(this.speed, Automotive.MaxVel + 10.0, 3.0);
                 this.wAngleInner = utils_1.zTween(this.wAngleInner, this.wAngleTarg, this.time.delta * 2);
                 this.wAngleSign = this.wAngleInner > 0.001 ? 1 : this.wAngleInner < -0.001 ? -1 : 0;
+
                 // Theta is based on speed, wheelbase & wheel angle
                 this.omega = this.wAngleInner * this.speed / Automotive.WheelBase;
                 this.theta += this.omega * this.time.delta;
-                // Calc this frame's XY velocity
-                this.velocity.set(Math.cos(this.theta) * this.frameDist, -Math.sin(this.theta) * this.frameDist);
-                // Add velocity to total position
-                this.pos.add(this.velocity);
+               if(this.gear > -1) {
+                    // Calc this frame's XY velocity
+                    this.velocity.set(Math.cos(this.theta) * this.frameDist, -Math.sin(this.theta) * this.frameDist);
+                    // Add velocity to total position
+                    this.pos.add(this.velocity);
+               } else {
+                    // Calc this frame's XY velocity
+                    this.velocity.set(-Math.cos(this.theta) * this.frameDist, Math.sin(this.theta) * this.frameDist);
+                    // Add velocity to total position
+                    this.pos.add(this.velocity);
+               }
                 // Fake some momentum
                 this.longitMomentum = utils_1.zTween(this.longitMomentum, this.accel / this.time.delta, this.time.delta * 6);
                 this.lateralMomentum = this.omega * this.speed;
@@ -526,6 +572,11 @@
                     },
                     {
                         name: "lightStop",
+                        type: "texture",
+                        ext: "jpg"
+                    },
+                    {
+                        name: "lightReverse",
                         type: "texture",
                         ext: "jpg"
                     },
@@ -911,7 +962,7 @@
     /***/
     (function (module, exports) {
 
-        module.exports = "#define NIGHTLIGHT 0.4\n\nfloat normFloat(float n, float minVal, float maxVal){\n\treturn max(0.0, min(1.0, (n-minVal) / (maxVal-minVal)));\n}\n\n// Returns 1 if type matches val, 0 if not\nfloat checkType(float type, float val){\n\treturn step(val - 0.1, type) * step(type, val + 0.1);\n}\n\nuniform vec3 lightsT;\nuniform vec3 lightsO;\nattribute float type;\nvarying float red;\nvarying float amb;\nvarying float wht;\nvarying float brightness;\n\nvoid main(){\n\tgl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0 );\n\tbrightness = 1.0;\n\n\t// Type 0: Reverse light?\n\n\t// Type 1: Right blinker\n\tamb = checkType(type, 1.0) * lightsT.z;\n\n\t// Type 2: Left blinker\n\tamb += checkType(type, 2.0) * lightsT.y;\n\n\t// Type 3: Side brakelights & side nightlights\n\tred = checkType(type, 3.0) * (NIGHTLIGHT + lightsO.x * (1.0 - NIGHTLIGHT));\n\n\t// Type 4: Center brakelight\n\tred += checkType(type, 4.0) * lightsO.x;\n\n\t// Type 5: Center nightlight\n\tred += checkType(type, 5.0) * NIGHTLIGHT;\n\n\t// Type 6: Lower foglights off\n\tred += checkType(type, 6.0) * NIGHTLIGHT * 0.2;\n\n\t// Type 7: Lower foglights on\n\tred += checkType(type, 7.0) * NIGHTLIGHT * 1.5;\n}"
+        module.exports = "#define NIGHTLIGHT 0.4\n\nfloat normFloat(float n, float minVal, float maxVal){\n\treturn max(0.0, min(1.0, (n-minVal) / (maxVal-minVal)));\n}\n\n// Returns 1 if type matches val, 0 if not\nfloat checkType(float type, float val){\n\treturn step(val - 0.1, type) * step(type, val + 0.1);\n}\n\nuniform vec3 lightsT;\nuniform vec3 lightsO;\nattribute float type;\nvarying float red;\nvarying float amb;\nvarying float wht;\nvarying float brightness;\n\nvoid main(){\n\tgl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0 );\n\tbrightness = 1.0;\n\n\t// Type 0: Reverse light?\n\tamb = checkType(type, 0.0) * lightsO.x;\n\t// Type 1: Right blinker\n\tamb += checkType(type, 1.0) * lightsT.z;\n\n\t// Type 2: Left blinker\n\tamb += checkType(type, 2.0) * lightsT.y;\n\n\t// Type 3: Side brakelights & side nightlights\n\tred = checkType(type, 3.0) * (NIGHTLIGHT + lightsO.x * (1.0 - NIGHTLIGHT));\n\n\t// Type 4: Center brakelight\n\tred += checkType(type, 4.0) * lightsO.x;\n\n\t// Type 5: Center nightlight\n\tred += checkType(type, 5.0) * NIGHTLIGHT;\n\n\t// Type 6: Lower foglights off\n\tred += checkType(type, 6.0) * NIGHTLIGHT * 0.2;\n\n\t// Type 7: Lower foglights on\n\tred += checkType(type, 7.0) * NIGHTLIGHT * 1.5;\n}"
 
         /***/
     }),
@@ -1558,6 +1609,7 @@
                 this.detailBox.innerHTML = translations["BUILDING_CAR"];
                 TweenLite.delayedCall(0.5, function () {
                     this.parent.preloadComplete(this.cargo);
+                    
                     this.detailBox.innerHTML = translations["TAP_TO_BEGIN"];
                 }.bind(this));
             };
@@ -1656,7 +1708,7 @@
                 this.envCube.format = THREE.RGBFormat;
                 // Material Body Color
                 this.matBodySilver = new THREE.MeshStandardMaterial({
-                    color: 0xbbbbbb,
+                    color: 0x6c5ce7,
                     metalness: 0.7,
                     roughness: 0.7,
                     envMap: this.envCube,
@@ -1670,7 +1722,7 @@
                 }
                 // Material Body Black
                 this.matBodyBlack = new THREE.MeshLambertMaterial({
-                    color: 0x000000,
+                    color: 0x2d3436,
                     emissive: 0x444444,
                     reflectivity: 0.8,
                     envMap: this.envCube,
@@ -1874,33 +1926,42 @@
                     fragmentShader: turnBarFS,
                     blending: THREE.AdditiveBlending,
                     transparent: true,
-                    depthTest: false
+                    depthTest: true
                 });
                 this.glowStop = this.carChassis.getObjectByName("Stop");
                 this.glowStop.material = glowStopMat;
             };
             ////////////////// TURN SIGNALS //////////////////
             CarLights.prototype.initTurnFlares = function () {
+                
                 // Left grid
                 var posArray = new Float32Array([-4755, 2227, -1269, -4703, 2222, -1326, -4649, 2215, -1381, -4590, 2208, -1436, -4526, 2200, -1492, -4459, 2192, -1548, -4386, 2182, -1604, -4718, 2182, -1264, -4668, 2179, -1321, -4301, 2175, -1658, -4614, 2175, -1377, -4556, 2168, -1433, -4494, 2163, -1489, -4429, 2158, -1545, -4358, 2151, -1600, -4266, 2147, -1653, -4675, 2136, -1260, -4627, 2134, -1316, -4575, 2132, -1373, -4520, 2130, -1428, -4461, 2128, -1485, -4400, 2126, -1540, -4329, 2123, -1597, ]);
                 var normArray = new Float32Array([-0.9, 0, -0.4, -0.9, 0, -0.4, -0.9, 0, -0.4, -0.9, 0, -0.4, -0.9, 0, -0.4, -0.9, 0, -0.4, -0.9, 0, -0.4, -0.9, 0, -0.4, -0.9, 0, -0.4, -0.9, 0, -0.4, -0.9, 0, -0.4, -0.9, 0, -0.4, -0.9, 0, -0.4, -0.9, 0, -0.4, -0.9, 0, -0.4, -0.9, 0, -0.4, -0.9, 0, -0.4, -0.9, 0, -0.4, -0.9, 0, -0.4, -0.9, 0, -0.4, -0.9, 0, -0.4, -0.9, 0, -0.4, -0.9, 0, -0.4, ]);
+                
                 this.flareTurnMat = this.flareHeadMat.clone();
                 this.flareTurnMat.uniforms["texture"].value = this.flareTurnText;
                 this.flareTurnMat.uniforms["size"].value = 0.05;
                 this.flareTurnMat.uniforms["brightness"].value = 1;
+
                 var leftTurnGrid = new THREE.BufferGeometry();
                 leftTurnGrid.addAttribute("position", new THREE.BufferAttribute(posArray, 3));
                 leftTurnGrid.addAttribute("normal", new THREE.BufferAttribute(normArray, 3));
+
                 this.flareLPoints = new THREE.Points(leftTurnGrid, this.flareTurnMat);
                 this.carChassis.add(this.flareLPoints);
+
                 // Right grid
                 posArray = new Float32Array([-4755, 2227, 1269, -4703, 2222, 1326, -4649, 2215, 1381, -4590, 2208, 1436, -4526, 2200, 1492, -4459, 2192, 1548, -4386, 2182, 1604, -4718, 2182, 1264, -4668, 2179, 1321, -4301, 2175, 1658, -4614, 2175, 1377, -4556, 2168, 1433, -4494, 2163, 1489, -4429, 2158, 1545, -4358, 2151, 1600, -4266, 2147, 1653, -4675, 2136, 1260, -4627, 2134, 1316, -4575, 2132, 1373, -4520, 2130, 1428, -4461, 2128, 1485, -4400, 2126, 1540, -4329, 2123, 1597]);
                 normArray = new Float32Array([-0.9, 0, 0.4, -0.9, 0, 0.4, -0.9, 0, 0.4, -0.9, 0, 0.4, -0.9, 0, 0.4, -0.9, 0, 0.4, -0.9, 0, 0.4, -0.9, 0, 0.4, -0.9, 0, 0.4, -0.9, 0, 0.4, -0.9, 0, 0.4, -0.9, 0, 0.4, -0.9, 0, 0.4, -0.9, 0, 0.4, -0.9, 0, 0.4, -0.9, 0, 0.4, -0.9, 0, 0.4, -0.9, 0, 0.4, -0.9, 0, 0.4, -0.9, 0, 0.4, -0.9, 0, 0.4, -0.9, 0, 0.4, -0.9, 0, 0.4, ]);
+                
                 var rightTurnGrid = new THREE.BufferGeometry();
+                
                 rightTurnGrid.addAttribute("position", new THREE.BufferAttribute(posArray, 3));
                 rightTurnGrid.addAttribute("normal", new THREE.BufferAttribute(normArray, 3));
+                
                 this.flareRPoints = new THREE.Points(rightTurnGrid, this.flareTurnMat);
                 this.carChassis.add(this.flareRPoints);
+
                 // Left & right turn bars
                 this.glowTurnMat = new THREE.ShaderMaterial({
                     uniforms: {
@@ -1917,12 +1978,15 @@
                     transparent: true,
                     depthTest: false
                 });
+
                 this.carChassis.getObjectByName("Turn").material = this.glowTurnMat;
             };
+
             CarLights.prototype.onWindowResize = function (_vpH) {
                 this.flareHeadMat.uniforms["vpH"].value = _vpH;
                 this.flareTurnMat.uniforms["vpH"].value = _vpH;
             };
+
             // Animates lights
             CarLights.prototype.update = function (_props) {
                 // Turning left
@@ -1943,11 +2007,13 @@
                     this.uniLightsTurn.z = 0;
                     this.uniLightsTurn.x = 0;
                 }
-                this.uniLightsOther.x = _props.braking;
+
+                this.uniLightsOther.x = 0;
                 this.glowStop.visible = _props.braking ? true : false;
                 this.flareLPoints.visible = this.uniLightsTurn.y ? true : false;
                 this.flareRPoints.visible = this.uniLightsTurn.z ? true : false;
             };
+            
             return CarLights;
         }());
         exports.default = CarLights;
@@ -2079,7 +2145,7 @@
                     shading: THREE.FlatShading
                 });
                 this.brMatPads = new THREE.MeshPhongMaterial({
-                    color: 0x333333,
+                    color: 0xd63031,
                     shininess: 50,
                     shading: THREE.FlatShading
                 });
@@ -2321,11 +2387,12 @@
                 this.lightGrid = new THREE.Points(this.geometry, this.gridMaterial);
                 this.lightGrid.frustumCulled = false;
                 this.parent.add(this.lightGrid);
-                /*let blank = new THREE.PlaneBufferGeometry(10, 10, 10, 10);
-                blank.rotateX(Math.PI / 2);
-                let blankMat = new THREE.MeshBasicMaterial({color: 0xff9900, wireframe: true});
-                let blankMesh = new THREE.Mesh(blank, blankMat);
-                this.parent.add(blankMesh);*/
+
+                // let blank = new THREE.PlaneBufferGeometry(10, 10, 35, 35);
+                // blank.rotateX(Math.PI / 2);
+                // let blankMat = new THREE.MeshBasicMaterial({color: 0xff9900, wireframe: true});
+                // let blankMesh = new THREE.Mesh(blank, blankMat);
+                // this.parent.add(blankMesh);
             };
             Grid.prototype.moveRippleOrigin = function (_x, _y) {
                 this.ripplePos.set(_x, _y);
@@ -2336,7 +2403,7 @@
                     value: 1.0,
                     easing: Power2.easeInOut,
                     onStart: function () {
-                        // this.rippleGen.newMouseSize(1.0);
+                        //this.rippleGen.newMouseSize(1.0);
                     }.bind(this)
                 });
             };
@@ -2345,11 +2412,11 @@
                     r: 0.0,
                     g: 0.0,
                     b: 0.0,
-                    easing: Power2.easeInOut
+                    easing: Power2.easeInOut,
                 });
                 TweenLite.to(this.uniProgress, 1.0, {
                     value: 0.0,
-                    easing: Power2.easeInOut
+                    easing: Power2.easeInOut,
                 });
             };
             // Update once per frame
