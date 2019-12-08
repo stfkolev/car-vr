@@ -26,7 +26,7 @@ var CarBody = function () {
     this.envCube = _cubeText;
     this.envCube.format = THREE.RGBFormat;
     this.matBodySilver = new THREE.MeshStandardMaterial({
-      color: 0xff5e57,
+      color: 0x5f27cd,
       metalness: 0.7,
       roughness: 0.7,
       envMap: this.envCube

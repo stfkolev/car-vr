@@ -88,7 +88,7 @@ var Model = function () {
   };
 
   Model.prototype.addSceneLights = function () {
-    this.ambLight = new THREE.AmbientLight(0xFFFFFF, 0.2);
+    this.ambLight = new THREE.AmbientLight(0xFFFFFF, 0);
     this.spotLight = new THREE.DirectionalLight(0xFFFFFF, 0);
     
     this.spotLight.position.set(0, 2, 0);
