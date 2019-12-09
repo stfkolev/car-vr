@@ -1,0 +1,38 @@
+
+/******************* JOYSTICK *******************/
+
+.joyStick {
+  position: absolute;
+  pointer-events: none;
+  left: 100px;
+  top: 100px;
+  display: none;
+
+  circle {
+    fill: none;
+    stroke: #fff;
+  }
+}
+
+/*.joyStick polygon{fill:#fff;}*/
+
+#joyIn {
+  transform: translate(-34px, -34px);
+  stroke-width: 6;
+  width: 68px;
+  height: 68px;
+}
+
+#joyOut {
+  transform: translate(-60px, -60px);
+  stroke-width: 2;
+  width: 120px;
+  height: 120px;
+}
+
+.st1 {
+  fill: none;
+  stroke-width: 2;
+  stroke: #888;
+  stroke-linejoin: miter;
+}

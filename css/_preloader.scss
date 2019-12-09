@@ -1,0 +1,95 @@
+
+/******************* PRELOADER *******************/
+
+#preloader {
+  width: 300px;
+  height: auto;
+  position: fixed;
+  pointer-events: none;
+  top: 50%;
+  left: 50%;
+  background: rgba(57, 53, 51, 0.7);
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  opacity: 0;
+  transform: translateY(10px);
+  margin: -35px 0 0 50px;
+}
+
+#preHeader {
+  font-size: 26px;
+}
+
+#preBar {
+  width: 100px;
+  height: 3px;
+  border: 1px solid #99604c;
+  margin: 5px 0px 0px 1px;
+}
+
+#preProg {
+  background: #99604c;
+  height: 100%;
+  width: 0%;
+}
+
+#preDetail {
+  font-size: 16px;
+  padding-top: 5px;
+}
+
+#preButton {
+  background: #99604c;
+  width: 220px;
+  height: 40px;
+  margin-top: 15px;
+  position: relative;
+  pointer-events: auto;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+  display: none;
+
+  &:hover {
+    background: #ffffff;
+    color: #99604c;
+  }
+}
+
+a {
+  color: #fff;
+}
+
+#preButText {
+  position: absolute;
+  top: 12px;
+  width: 220px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+#preLogo {
+  width: 140px;
+  height: 140px;
+  background: url("../textures/ffLogo.png") center (center / 100%) auto no-repeat;
+  position: absolute;
+  left: -160px;
+  top: 0px;
+  display: none;
+}
+
+#preloader.visible {
+  opacity: 1;
+  transform: translateY(0px);
+}
+
+@media screen and (max-width: 500px) {
+  #preloader {
+    margin: 70px 0 0 -110px;
+  }
+
+  #preLogo {
+    left: 0px;
+    top: -160px;
+  }
+}

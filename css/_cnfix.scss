@@ -1,0 +1,30 @@
+/******************* FIXES FOR CN VERSION *******************/
+
+.cn {
+  .ctrlDesc {
+    font-size: 10px;
+  }
+
+  #btnVR .ctrlDesc {
+    left: -10px;
+  }
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: #393533;
+  color: #fff;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+}
+
+#pageMain {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+}

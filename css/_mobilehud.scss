@@ -1,0 +1,41 @@
+
+/******************* MOBILE HEADS-UP DISPLAY *******************/
+
+.mobileHUD {
+  width: 100px;
+  height: 120px;
+  position: absolute;
+  top: 25%;
+  margin: -60px 5px 0px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  display: block;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  pointer-events: none;
+}
+
+#mobileHUDTilt {
+  right: 50%;
+}
+
+#mobileHUDTouch {
+  left: 50%;
+}
+
+.mobileIcon {
+  background: url("../textures/icoMobile.png") 0% 50% / 200% 100% no-repeat;
+  width: 100px;
+  height: 100px;
+}
+
+#hudIcoTouch {
+  background-position: 100% 100%;
+}
+
+.mobileHUD .ctrlDesc {
+  width: 100%;
+  text-align: center;
+  font-size: 10px;
+  bottom: 5px;
+}
