@@ -1,0 +1,71 @@
+
+/******************* ON-SCREEN CONTROLS *******************/
+
+.ctrls {
+  width: 70px;
+  height: 45px;
+  position: absolute;
+  display: block;
+  bottom: 10px;
+  text-align: center;
+  color: #999;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+#ctrlKeys {
+  left: 10px;
+}
+
+#ctrlMouse {
+  left: 100px;
+}
+
+#ctrlScroll {
+  left: 190px;
+}
+
+#speedometer {
+  left: 280px;
+}
+
+.ctrlIcon {
+  width: 35px;
+  height: 35px;
+  display: inline-block;
+  background: url("../textures/icoCtrls.png") 0% 50% / 300% 100% no-repeat;
+}
+
+#ctrlIcoKeys {}
+
+#ctrlIcoMouse {
+  background-position: 50% 50%;
+}
+
+#ctrlIcoScroll {
+  background-position: 100% 50%;
+}
+
+.speedometerSpeed {
+  font-family: Roboto, sans-serif;
+  font-weight: bold;
+  font-size: 24pt;
+  text-align: center;
+  width: 35px;
+  height: 35px;
+  display: inline-block;
+}
+
+.ctrlDesc {
+  font-size: 6px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  font-weight: 700;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  pointer-events: none;
+}
