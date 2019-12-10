@@ -123,7 +123,7 @@ var CarProps = function () {
            *      u^k = 0.4
            * 
            *  Formula:
-           *      F = (((m / R) * g) * u^s * u^k) - 4) * F^fr^max
+           *      F = (((m / R) * g) * u^s * u^k) - W) * F^fr^max
            *      
            */
           const decceleration = (Automotive.Weight / Automotive.Force * Automotive.Accel * omegaAxle * omegaMg - 4) * Automotive.Decel;

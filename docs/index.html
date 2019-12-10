@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="assets/css/vendor.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+
+    <title>Documentation - Въведение</title>
+  </head>
+  <body data-spy="scroll" data-target="#toc">
+    <section class="py-0">
+      <div class="container-fluid">
+        <div class="row justify-content-between">
+
+          <!-- navigation -->
+          <aside class="col-lg-3 p-3 doc-sidebar">
+            <div class="sticky">
+              <nav class="navbar navbar-vertical navbar-expand-lg navbar-light">
+                <div>
+                  <a href="#" class="navbar-brand"><img src="assets/images/logo.svg" alt="Logo"><span class="badge badge-green ml-2">0.1.9</span></a>
+                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                </div>
+
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul id="page-nav" class="nav nav-vertical-2 flex-column">
+                    <li class="nav-item active">
+                      <a class="nav-link" data-toggle="collapse" href="#menu-1" role="button" aria-expanded="false" aria-controls="menu-1">Как да започнем?</a>
+                      <div class="collapse show" id="menu-1" data-parent="#page-nav">
+                        <ul class="nav flex-column">
+                          <li class="nav-item">
+                            <a class="nav-link active" href="#">Въведение</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="get-started/file-structure.html">Файлова Структура</a>
+                          </li>
+                        </ul>
+                      </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#menu-2" role="button" aria-expanded="true" aria-controls="menu-2">Модули</a>
+                        <div class="collapse" id="menu-2" data-parent="#page-nav">
+                          <ul class="nav flex-column">
+                            <li class="nav-item">
+                              <a class="nav-link" href="modules/car/CarBody.html">Car Body</a>
+                              <a class="nav-link" href="modules/car/CarLights.html">Car Lights</a>
+                              <a class="nav-link" href="modules/car/CarProps.html">Car Props</a>
+                              <a class="nav-link" href="modules/car/CarWheels.html">Car Wheels</a>
+                              <a class="nav-link" href="modules/controls/CameraControl.html">Camera Control</a>
+                              <a class="nav-link" href="modules/controls/Controls.html">Controls</a>
+                              <a class="nav-link" href="modules/controls/Gimball.html">Gimball</a>
+                              <a class="nav-link" href="modules/controls/Joystick.html">Joystick</a>
+                              <a class="nav-link" href="modules/utility/Binocs.html">Binocs</a>
+                              <a class="nav-link" href="modules/utility/Raycaster.html">Raycaster</a>
+                              <a class="nav-link" href="modules/utility/RippleGenerator.html">Ripple Generator</a>
+                              <a class="nav-link" href="modules/utility/Utils.html">Utils</a>
+                              <a class="nav-link" href="modules/Grid.html">Grid</a>
+                              <a class="nav-link" href="modules/Init.html">Init</a>
+                              <a class="nav-link" href="modules/Model.html">Model</a>
+                              <a class="nav-link" href="modules/Preloader.html">Preloader</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </li>
+
+                  </ul>
+                </div>
+              </nav>
+            </div>
+          </aside>
+          <!-- / navigation -->
+
+
+          <!-- content -->
+          <article class="col-lg-9 doc-content">
+
+            <div class="row">
+              <div class="col">
+                <div class="doc-content-header">
+                  <div class="row align-items-center">
+                    <div class="col-6 col-lg-10">
+                      <nav aria-label="breadcrumb d-none d-inline-flex-lg">
+                        <a href="#index.html" class="breadcrumb-back" title="Back"></a>
+                        <ol class="breadcrumb d-none d-lg-inline-flex">
+                          <li class="breadcrumb-item"><a href="index.html">Начало</a></li>
+                          <li class="breadcrumb-item"><a href="#">Документация</a></li>
+                          <li class="breadcrumb-item active" aria-current="page">Въведение</li>
+                        </ol>
+                      </nav>
+                    </div>
+                    <div class="col text-right">
+                      <a href="https://github.com/stfkolev/car-vr" class="btn btn-sm btn-rounded btn-primary">Виж в Github</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row doc-content-body">
+                <article class="col-md-9">
+  
+                  <h1>Въведение</h1>
+                  <p>Това е бързо ръководство, което ще ви помогне да изградите проекта на ваша лична машина.</p>
+  
+                  <section id="setup">
+                    <h2 class="section-title-2">Настройка <a href="#setup" class="clipboard"></a></h2>
+                    <p>Преди всичко, ще ви е нужен Node.js . Можете да го изтеглите <a href="https://nodejs.org/en/" class="external">оттук</a></p>
+                    <p>Когато Node.js е инсталиран, отворете терминала си в папката на проекта и изпълнете командата <code class="code">npm install</code>да се инсталират всички допълнителни модули. Ще се появи нова папка под името <code class="folder">node_modules</code> автоматично.</p>
+                    <pre><code class="language-markup">npm install</code></pre>
+                    <p>След като приключи изтеглянето и инсталирането на модулите сте готови. Сега трябва да изпълните командата  <code class="code">npm start</code> в терминала. Това ще събере всички файлове, които са му нужни и пусне уеб сървър на адрес <a href="http://localhost:80" class="external">http://localhost:80</a></p>
+                    <pre><code class="language-markup">npm start</code></pre>
+                    <p>Докато горната команда работи, тя ще поддържа сървъра, за да можете да виждате всякакви промени направени по файловете.</p>
+                    <p>Използвайте комбинацията <kbd class="kbd">Ctrl+C</kbd> или просто затворете терминала, за да спрете сървъра.</p>
+                  </section>
+                </article>
+  
+  
+                <aside class="col-md-3 d-none d-md-block">
+                  <div class="sticky">
+                    <ul id="toc" class="nav flex-column toc">
+                      <li class="nav-item">
+                        <a data-scroll class="nav-link" href="#setup">Настройка</a>
+                      </li>
+                    </ul>
+                  </div>
+                </aside>
+  
+  
+              </div>
+
+          </article>
+          <!-- / content -->
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- footer -->
+    <footer class="bg-dark">
+      <div class="container">
+        <div class="row gutter-3">
+          <div class="col-12 col-md-2">
+            <a href="#"><img src="assets/images/logo-white.svg" alt="Logo"></a>
+          </div>
+          <div class="col-12 col-md-6 text-white">
+            <p class="mb-4">Този проект е създаден с цел курсова работа. Материалите принадлежат на създателят.<br/> Всички права са запазени.</p>
+            <div class="row">
+              <div class="col">
+                <ul class="list-group list-group-minimal">
+                  <li class="list-group-item"><a href="https://www.ff.com/" class="link">Faraday Future</a></li>
+                  <li class="list-group-item"><a href="https://hammerjs.github.io/" class="link">Hammer JS</a></li>
+                  <li class="list-group-item"><a href="https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API" class="link">WebGL</a></li>
+                </ul>
+              </div>
+              <div class="col">
+                <ul class="list-group list-group-minimal">
+                  <li class="list-group-item"><a href="https://greensock.com/gsap/" class="link">Greensock GSAP</a></li>
+                  <li class="list-group-item"><a href="https://github.com/richtr/NoSleep.js/" class="link">Nosleep JS</a></li>
+                  <li class="list-group-item"><a href="https://www.typescriptlang.org/" class="link">TypeScript</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-4 col-lg-2 ml-auto text-md-right">
+            <div class="dropdown">
+              <button class="btn btn-inverted btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Български
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">English</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- / footer -->
+
+
+    <script src="assets/js/vendor.js"></script>
+    <script src="assets/js/app.js"></script>
+  </body>
+</html>

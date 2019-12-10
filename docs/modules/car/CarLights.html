@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="../../assets/css/vendor.css" />
+    <link rel="stylesheet" href="../../assets/css/style.css" />
+
+    <title>Documentation - Car Lights</title>
+  </head>
+  <body data-spy="scroll" data-target="#toc">
+    <section class="py-0">
+      <div class="container-fluid">
+        <div class="row justify-content-between">
+
+          <!-- navigation -->
+          <aside class="col-lg-3 p-3 doc-sidebar">
+            <div class="sticky">
+              <nav class="navbar navbar-vertical navbar-expand-lg navbar-light">
+                <div>
+                  <a href="#" class="navbar-brand"><img src="../../assets/images/logo.svg" alt="Logo"><span class="badge badge-green ml-2">0.1.9</span></a>
+                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                </div>
+
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul id="page-nav" class="nav nav-vertical-2 flex-column">
+                    <li class="nav-item">
+                      <a class="nav-link" data-toggle="collapse" href="#menu-1" role="button" aria-expanded="false" aria-controls="menu-1">Как да започнем?</a>
+                      <div class="collapse" id="menu-1" data-parent="#page-nav">
+                        <ul class="nav flex-column">
+                          <li class="nav-item">
+                            <a class="nav-link" href="../../index.html">Въведение</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="../../get-started/file-structure.html">Файлова Структура</a>
+                          </li>
+                        </ul>
+                      </div>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" data-toggle="collapse" href="#menu-2" role="button" aria-expanded="true" aria-controls="menu-2">Модули</a>
+                        <div class="collapse show" id="menu-2" data-parent="#page-nav">
+                          <ul class="nav flex-column">
+                            <li class="nav-item">
+                              <a class="nav-link" href="CarBody.html">Car Body</a>
+                              <a class="nav-link active" href="CarLights.html">Car Lights</a>
+                              <a class="nav-link" href="CarProps.html">Car Props</a>
+                              <a class="nav-link" href="CarWheels.html">Car Wheels</a>
+                              <a class="nav-link" href="../controls/CameraControl.html">Camera Control</a>
+                              <a class="nav-link" href="../controls/Controls.html">Controls</a>
+                              <a class="nav-link" href="../controls/Gimball.html">Gimball</a>
+                              <a class="nav-link" href="../controls/Joystick.html">Joystick</a>
+                              <a class="nav-link" href="../utility/Binocs.html">Binocs</a>
+                              <a class="nav-link" href="../utility/Raycaster.html">Raycaster</a>
+                              <a class="nav-link" href="../utility/RippleGenerator.html">Ripple Generator</a>
+                              <a class="nav-link" href="../utility/Utils.html">Utils</a>
+                              <a class="nav-link" href="../Grid.html">Grid</a>
+<a class="nav-link" href="../Grid.html">Grid</a>
+                              <a class="nav-link" href="../Init.html">Init</a>
+                              <a class="nav-link" href="../Model.html">Model</a>
+                              <a class="nav-link" href="../Preloader.html">Preloader</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </li>
+                      <li class="nav-item">
+                          <a href="../../sources.html" class="nav-link">Източници</a>
+                      </li>
+                  </ul>
+                </div>
+              </nav>
+            </div>
+          </aside>
+          <!-- / navigation -->
+
+
+          <!-- content -->
+          <article class="col-lg-9 doc-content">
+
+            <div class="row">
+              <div class="col">
+                <div class="doc-content-header">
+                  <div class="row align-items-center">
+                    <div class="col-6 col-lg-10">
+                      <nav aria-label="breadcrumb d-none d-inline-flex-lg">
+                        <a href="#index.html" class="breadcrumb-back" title="Back"></a>
+                        <ol class="breadcrumb d-none d-lg-inline-flex">
+                          <li class="breadcrumb-item"><a href="../../index.html">Начало</a></li>
+                          <li class="breadcrumb-item"><a href="../../index">Документация</a></li>
+                          <li class="breadcrumb-item"><a href="CarBody.html">Модули</a></li>
+                          <li class="breadcrumb-item active" aria-current="page">Car Lights</li>
+                        </ol>
+                      </nav>
+                    </div>
+                    <div class="col text-right">
+                      <a href="https://github.com/stfkolev/car-vr" class="btn btn-sm btn-rounded btn-primary">Виж в Github</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row doc-content-body">
+                <article class="col-md-9">
+  
+                  <h1>Car Lights</h1>
+                  <p>Този клас обединява shader-ите на всички светлини по колата и тяхното правилно разпределение по самият обект.</p>
+  
+                  <section id="functions">
+                    <h2 class="section-title-2">Функции <a href="#functions" class="clipboard"></a></h2>
+                    <p>Тук са изброените функции и тяхното предназначение.</p>
+
+                    <div class="color boxed">
+                      <span class="color-example bg-blue"></span>
+                      <div class="color-info">
+                        <h5 class="color-title">initLightMeshes</h5>
+                        <span>Задава материали и начална фаза на всички светлинни обекти</span>
+                      </div>
+                    </div>
+
+                    <br />
+
+                    <div class="color boxed">
+                      <span class="color-example bg-red"></span>
+                      <div class="color-info">
+                        <h5 class="color-title">initHeadlightFlares</h5>
+                        <span>Задава позиция, нормализирана source карта и материал за фаровете</span>
+                      </div>
+                    </div>
+
+                    <br />
+
+                    <div class="color boxed">
+                      <span class="color-example bg-cyan"></span>
+                      <div class="color-info">
+                        <h5 class="color-title">initStopFlares</h5>
+                        <span>Задава позиция, нормализирана source карта и материал за стоповете</span>
+                      </div>
+                    </div>
+
+                    <br />
+
+                    <div class="color boxed">
+                      <span class="color-example bg-green"></span>
+                      <div class="color-info">
+                        <h5 class="color-title">initReverseFlares</h5>
+                        <span>Задава позиция, нормализирана source карта и материал за светлината за задна скорост</span>
+                      </div>
+                    </div>
+
+                    <br />
+
+                    <div class="color boxed">
+                      <span class="color-example bg-purple"></span>
+                      <div class="color-info">
+                        <h5 class="color-title">initTurnFlares</h5>
+                        <span>Задава позиция, нормализирана source карта и материал за мигачи</span>
+                      </div>
+                    </div>
+
+                    <br />
+
+                    <div class="color boxed">
+                      <span class="color-example bg-yellow"></span>
+                      <div class="color-info">
+                        <h5 class="color-title">onWindowResize</h5>
+                        <span>Запазва съразмерност при оразмеряване</span>
+                      </div>
+                    </div>
+
+                    <br />
+
+                    <div class="color boxed">
+                      <span class="color-example bg-pink"></span>
+                      <div class="color-info">
+                        <h5 class="color-title">update</h5>
+                        <span>Обновява светлините за всеки фрейм прямо контролите, които са подадени</span>
+                      </div>
+                    </div>
+                  </section>
+                </article>
+  
+  
+                <aside class="col-md-3 d-none d-md-block">
+                  <div class="sticky">
+                    <ul id="toc" class="nav flex-column toc">
+                      <li class="nav-item">
+                        <a data-scroll class="nav-link" href="#functions">Функции</a>
+                      </li>
+                    </ul>
+                  </div>
+                </aside>
+  
+  
+              </div>
+
+          </article>
+          <!-- / content -->
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- footer -->
+    <footer class="bg-dark">
+      <div class="container">
+        <div class="row gutter-3">
+          <div class="col-12 col-md-2">
+            <a href="#"><img src="../../assets/images/logo-white.svg" alt="Logo"></a>
+          </div>
+          <div class="col-12 col-md-6 text-white">
+            <p class="mb-4">Този проект е създаден с цел курсова работа. Материалите принадлежат на създателят.<br/> Всички права са запазени.</p>
+            <div class="row">
+              <div class="col">
+                <ul class="list-group list-group-minimal">
+                  <li class="list-group-item"><a href="https://www.ff.com/" class="link">Faraday Future</a></li>
+                  <li class="list-group-item"><a href="https://hammerjs.github.io/" class="link">Hammer JS</a></li>
+                  <li class="list-group-item"><a href="https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API" class="link">WebGL</a></li>
+                </ul>
+              </div>
+              <div class="col">
+                <ul class="list-group list-group-minimal">
+                  <li class="list-group-item"><a href="https://greensock.com/gsap/" class="link">Greensock GSAP</a></li>
+                  <li class="list-group-item"><a href="https://github.com/richtr/NoSleep.js/" class="link">Nosleep JS</a></li>
+                  <li class="list-group-item"><a href="https://www.typescriptlang.org/" class="link">TypeScript</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-4 col-lg-2 ml-auto text-md-right">
+            <div class="dropdown">
+              <button class="btn btn-inverted btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Български
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">English</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- / footer -->
+
+
+    <script src="../../assets/js/vendor.js"></script>
+    <script src="../../assets/js/app.js"></script>
+  </body>
+</html>
